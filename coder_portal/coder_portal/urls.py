@@ -28,5 +28,6 @@ urlpatterns = [
     path('users/', include('rest_auth.urls')),
     path('users/registration/', include('rest_auth.registration.urls')),
     path('', include('users.urls')),
+    path('', include('blog.urls')),
     path('api/docs/', schema_view),
 ]

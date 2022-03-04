@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=30, blank=False, null=False)
-    description = models.TextField(max)
+    description = models.TextField(max_length=60)
 
     def __str__(self):
         return self.name

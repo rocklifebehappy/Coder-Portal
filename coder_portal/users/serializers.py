@@ -32,7 +32,7 @@ class ProjectSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class FollowersSerializer(ModelSerializer):
+class FollowerSerializer(ModelSerializer):
     class Meta:
         model = Followers
         fields = ['follower', 'following']

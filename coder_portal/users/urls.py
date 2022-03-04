@@ -1,7 +1,17 @@
 from django.urls import path
 from .views import (
-    ProfileView, CompanyView, CompanyListView, SkillView, ExperienceListView, ExperienceView)
-
+    ProfileView,
+    CompanyView,
+    CompanyListView,
+    SkillView,
+    ExperienceListView,
+    ExperienceView,
+    FollowerListView,
+    FollowerCreateView,
+    ProjectCreateView,
+    ProjectView,
+    ProjectListView
+)
 
 urlpatterns = [
     path('profile/<int:pk>/', ProfileView.as_view(), name='profile_detail'),
@@ -10,6 +20,9 @@ urlpatterns = [
     path('skill/', SkillView.as_view(), name="skill_list"),
     path('experience/', ExperienceListView.as_view(), name='experience_list'),
     path('experience/<int:pk>/', ExperienceView.as_view(), name='experience_detail'),
+    path('followers/', FollowerCreateView.as_view(), name='create_follower'),
+    path('followers/<int:pk>/', FollowerListView.as_view(), name='follower_list'),
+    path('project/create/', ProjectCreateView.as_view(), name='create_project'),
+    path('project/list/<int:pk>/', ProjectListView.as_view(), name='project_list'),
+    path('project/detail/<int:pk>/', ProjectView.as_view(), name='project_detail')
 ]
-
-

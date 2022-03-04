@@ -103,7 +103,7 @@ class Followers(models.Model):
     following = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.following
+        return self.following.email
 
     class Meta:
         verbose_name_plural = "Followers"
