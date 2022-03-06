@@ -55,7 +55,7 @@ class Profile(models.Model):
     linkedin = models.URLField(max_length=128, blank=True, null=True)
     email = models.URLField(max_length=128, blank=True, null=True)
     portfolio = models.URLField(max_length=128, blank=True, null=True)
-    skills = models.ManyToManyField(Skill, blank=True, null=True)
+    skills = models.ManyToManyField(Skill)
     job_type = models.CharField(max_length=20, choices=JOB_TYPE, blank=True, null=True)
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE, blank=True, null=True)
     level = models.CharField(max_length=20, choices=LEVEL, blank=True, null=True)
