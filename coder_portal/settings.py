@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'rest_auth.registration',
 ]
+DISABLE_COLLECTSTATIC=1
 
 SWAGGER_SETTINGS = {
     'LOGIN_URL': 'rest_framework:login',
