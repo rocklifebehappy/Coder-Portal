@@ -7,9 +7,14 @@ from .models import (
     BlogLike,
     Notification
 )
-from rest_framework import generics
+from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework import permissions
-from .permissions import IsProjectCommenterOrReadOnly, IsProjectReplierOrReadOnly, IsBlogCommenterOrReadOnly, IsBlogReplierOrReadOnly, IsNotificationAuthorizedOrReadOnly
+from .permissions import (
+    IsProjectCommenterOrReadOnly,
+    IsProjectReplierOrReadOnly,
+    IsBlogCommenterOrReadOnly,
+    IsBlogReplierOrReadOnly,
+    IsNotificationAuthorizedOrReadOnly)
 from .serializers import (
     ProjectCommentSerializer,
     ProjectReplySerializer,
@@ -21,7 +26,7 @@ from .serializers import (
 )
 
 
-class ProjectCommentListView(generics.ListCreateAPIView):
+class ProjectCommentListView(ListCreateAPIView):
     serializer_class = ProjectCommentSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
@@ -29,13 +34,13 @@ class ProjectCommentListView(generics.ListCreateAPIView):
         return ProjectComment.objects.filter(project__id=self.kwargs.get('pk', None))
 
 
-class ProjectCommentView(generics.RetrieveUpdateDestroyAPIView):
+class ProjectCommentView(RetrieveUpdateDestroyAPIView):
     serializer_class = ProjectCommentSerializer
     permission_classes = (IsProjectCommenterOrReadOnly,)
     queryset = ProjectComment.objects.all()
 
 
-class ProjectReplyListView(generics.ListCreateAPIView):
+class ProjectReplyListView(ListCreateAPIView):
     serializer_class = ProjectReplySerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
@@ -43,13 +48,13 @@ class ProjectReplyListView(generics.ListCreateAPIView):
         return ProjectReply.objects.filter(comment__id=self.kwargs.get('pk', None))
 
 
-class ProjectReplyView(generics.RetrieveUpdateDestroyAPIView):
+class ProjectReplyView(RetrieveUpdateDestroyAPIView):
     serializer_class = ProjectReplySerializer
     permission_classes = (IsProjectReplierOrReadOnly,)
     queryset = ProjectReply.objects.all()
 
 
-class ProjectLikeView(generics.ListCreateAPIView):
+class ProjectLikeView(ListCreateAPIView):
     serializer_class = ProjectLikeSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
@@ -57,7 +62,7 @@ class ProjectLikeView(generics.ListCreateAPIView):
         return ProjectLike.objects.filter(project__id=self.kwargs.get('pk', None))
 
 
-class BlogCommentListView(generics.ListCreateAPIView):
+class BlogCommentListView(ListCreateAPIView):
     serializer_class = BlogCommentSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
@@ -65,13 +70,13 @@ class BlogCommentListView(generics.ListCreateAPIView):
         return BlogComment.objects.filter(blog__id=self.kwargs.get('pk', None))
 
 
-class BlogCommentView(generics.RetrieveUpdateDestroyAPIView):
+class BlogCommentView(RetrieveUpdateDestroyAPIView):
     serializer_class = BlogCommentSerializer
     permission_classes = (IsBlogCommenterOrReadOnly,)
     queryset = BlogComment.objects.all()
 
 
-class BlogReplyListView(generics.ListCreateAPIView):
+class BlogReplyListView(ListCreateAPIView):
     serializer_class = BlogReplySerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
@@ -79,13 +84,13 @@ class BlogReplyListView(generics.ListCreateAPIView):
         return BlogReply.objects.filter(comment__id=self.kwargs.get('pk', None))
 
 
-class BlogReplyView(generics.RetrieveUpdateDestroyAPIView):
+class BlogReplyView(RetrieveUpdateDestroyAPIView):
     serializer_class = BlogReplySerializer
     permission_classes = (IsBlogReplierOrReadOnly,)
     queryset = BlogReply.objects.all()
 
 
-class BlogLikeView(generics.ListCreateAPIView):
+class BlogLikeView(ListCreateAPIView):
     serializer_class = BlogLikeSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
@@ -93,7 +98,7 @@ class BlogLikeView(generics.ListCreateAPIView):
         return BlogLike.objects.filter(blog__id=self.kwargs.get('pk', None))
 
 
-class NotificationView(generics.ListAPIView):
+class NotificationView(ListAPIView):
     serializer_class = NotificationSerializer
     permission_classes = (permissions.IsAuthenticated, IsNotificationAuthorizedOrReadOnly,)
 

@@ -39,18 +39,23 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.staticfiles',
 
-    # user made apps
-    'users',
-    'blog',
-    'activity',
+    # --------user made apps--------
+    'users.apps.UsersConfig',
+    'blog.apps.BlogConfig',
+    'activity.apps.ActivityConfig',
 
-    # package modules
+    # --------package modules-------
+    # ck editor module part
     'ckeditor',
     'ckeditor_uploader',
+
+    # django_rest_framework part
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'corsheaders',
+
+    # registration part
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -77,7 +82,7 @@ REST_FRAMEWORK = {
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Following is added to enable registration with email instead of username
 AUTHENTICATION_BACKENDS = (

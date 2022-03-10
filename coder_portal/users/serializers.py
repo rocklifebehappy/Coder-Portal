@@ -5,13 +5,14 @@ from .models import Company, Skill, Profile, Experience, Project, Followers
 class ProfileSerializer(ModelSerializer):
     class Meta:
         model = Profile
-        fields = '__all__'
+        fields = ['fullname', 'birthdate', 'Address', 'Phone', 'editor', 'github', 'linkedin', 'email', 'portfolio',
+                  'job_type', 'account_type', 'level', 'skills', 'user']
 
 
 class CompanySerializer(ModelSerializer):
     class Meta:
         model = Company
-        fields = '__all__'
+        fields = ['id', 'name', 'logo', 'location', 'employees', 'admins']
 
 
 class SkillSerializer(ModelSerializer):
